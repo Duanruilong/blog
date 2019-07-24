@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://duanruilong.github.io/"/>
-  <updated>2019-07-24T08:54:01.058Z</updated>
+  <updated>2019-07-24T10:06:30.832Z</updated>
   <id>https://duanruilong.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://duanruilong.github.io/2019/07/24/Taro-dva-Typescript%E6%90%AD%E5%BB%BA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/"/>
     <id>https://duanruilong.github.io/2019/07/24/Taro-dva-Typescript搭建微信小程序架构/</id>
     <published>2019-07-24T08:28:20.000Z</published>
-    <updated>2019-07-24T08:54:01.058Z</updated>
+    <updated>2019-07-24T10:06:30.832Z</updated>
     
-    <content type="html"><![CDATA[<p>微信小程序的开发目前是很热的一个领域，有很多的开发模式，找到一种属于自己的方法才会使得开发顺心顺利。<br>此架构是使用 Taro + dva + typescript 构建前端开发，京东凹凸实验室的React框架Taro很成熟，又是大厂在维护更新迭代，不用担心没人维护的问题，他有自己的UI还有物料社区，比起原生小程序方便很多，支持多端，一处代码，多处运行，微信小程序、H5、百度小程序、支付宝小程序、字节跳动小程序、QQ轻应用、快应用、ReactNative；数据管理是Redux集成的dva框架，是一个基于 redux 和 redux-saga 的数据流方案，然后为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以也可以理解为一个轻量级的应用框架；TypeScript就是所谓的JavaScript超集。它不是JavaScript的替代品，也不会为JavaScript代码添加任何新功能。相反，TypeScript允许程序员在其代码中使用面向对象的构造，然后将其转换为JavaScript。它还包括类型安全和编译时类型检查等便利功能。</p><p><img src="https://raw.githubusercontent.com/Duanruilong/phone_drl/master/image/blog/taro.jpg" alt="Taro"></p><a id="more"></a><blockquote><p>资料</p></blockquote><p><a href="https://taro.aotu.io/" target="_blank" rel="noopener">Taro官网地址：</a><br><a href="https://dvajs.com/guide/" target="_blank" rel="noopener">dva官网地址：</a></p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>前期工作准备：</p><p>cli 工具安装:</p><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用 npm 安装 CLI</span><br><span class="line">$ npm install -g @tarojs/cli</span><br><span class="line"></span><br><span class="line"># OR 使用 yarn 安装 CLI</span><br><span class="line">$ yarn global add @tarojs/cli</span><br><span class="line"></span><br><span class="line"># OR 安装了 cnpm，使用 cnpm 安装 CLI</span><br><span class="line">$ cnpm install -g @tarojs/cli</span><br></pre></td></tr></table></figure><p>使用命令创建模板项目:</p><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ taro init Taro_dva_Typescript</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/Duanruilong/phone_drl/master/image/blog/taro/tdt1.jpg" alt="Taro"></p>]]></content>
+    <content type="html"><![CDATA[<p>微信小程序的开发目前是很热的一个领域，有很多的开发模式，找到一种属于自己的方法才会使得开发顺心顺利。<br>此架构是使用 Taro + dva + typescript 构建前端开发，京东凹凸实验室的React框架Taro很成熟，又是大厂在维护更新迭代，不用担心没人维护的问题，他有自己的UI还有物料社区，比起原生小程序方便很多，支持多端，一处代码，多处运行，微信小程序、H5、百度小程序、支付宝小程序、字节跳动小程序、QQ轻应用、快应用、ReactNative；数据管理是Redux集成的dva框架，是一个基于 redux 和 redux-saga 的数据流方案，然后为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以也可以理解为一个轻量级的应用框架；TypeScript就是所谓的JavaScript超集。它不是JavaScript的替代品，也不会为JavaScript代码添加任何新功能。相反，TypeScript允许程序员在其代码中使用面向对象的构造，然后将其转换为JavaScript。它还包括类型安全和编译时类型检查等便利功能。</p><p><img src="https://raw.githubusercontent.com/Duanruilong/phone_drl/master/image/blog/taro.jpg" alt="Taro"></p><a id="more"></a><blockquote><p>资料</p></blockquote><p><a href="https://taro.aotu.io/" target="_blank" rel="noopener">Taro官网地址：</a><br><a href="https://dvajs.com/guide/" target="_blank" rel="noopener">dva官网地址：</a></p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="前期工作准备"><a href="#前期工作准备" class="headerlink" title="前期工作准备"></a>前期工作准备</h2><p>cli 工具安装:</p><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用 npm 安装 CLI</span><br><span class="line">$ npm install -g @tarojs/cli</span><br><span class="line"></span><br><span class="line"># OR 使用 yarn 安装 CLI</span><br><span class="line">$ yarn global add @tarojs/cli</span><br><span class="line"></span><br><span class="line"># OR 安装了 cnpm，使用 cnpm 安装 CLI</span><br><span class="line">$ cnpm install -g @tarojs/cli</span><br></pre></td></tr></table></figure><p>使用命令创建模板项目:</p><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ taro init Taro_dva_Typescript</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/Duanruilong/phone_drl/master/image/blog/taro/tdt1.jpg" alt="Taro"></p><h2 id="安装配置文件"><a href="#安装配置文件" class="headerlink" title="安装配置文件"></a>安装配置文件</h2><p>安装dva</p><p><code>cnpm install --save dva-core dva-loading</code></p><ul><li><code>dva-core</code>：封装了 redux 和 redux-saga的一个插件</li><li><code>dva-loading</code>：管理页面的loading状态</li></ul><p>安装@tarojs/redux</p><p><code>cnpm install --save redux @tarojs/redux @tarojs/redux-h5 redux-thunk redux-logger</code></p><h1 id="配置项目文件"><a href="#配置项目文件" class="headerlink" title="配置项目文件"></a>配置项目文件</h1><p>去除不需要的文件，添加实际需要的一些文件，先删除<code>./ssrc/page</code>下的index文件夹，后期使用命令行生成完整结构的文件夹。</p><p>在<code></code>/src`目录下根据自己的实际需求进行一下配置：</p><ul><li><code>assets</code>: 一些静态资源，比如：image、iconfont</li><li><code>config</code>: 项目配置文件</li><li><code>components</code>: 项目编写的一些共用组件</li><li><code>types</code>: 项目公共的Typescript类型声明</li><li><code>models</code>: 项目dva插件model函数的引用或者是一些共用的js文件</li><li><code>utils</code>: 项目里封装的一些插件</li></ul><h2 id="项目一些具体配置操作"><a href="#项目一些具体配置操作" class="headerlink" title="项目一些具体配置操作"></a>项目一些具体配置操作</h2><h3 id="1、在-src-config下创建index-ts，添加项目配置信息"><a href="#1、在-src-config下创建index-ts，添加项目配置信息" class="headerlink" title="1、在./src/config下创建index.ts，添加项目配置信息"></a>1、在<code>./src/config</code>下创建index.ts，添加项目配置信息</h3><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 这里为了方便测试使用 Easy Mock 模拟接口数据</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">export const ONLINEHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * mock 接口</span></span><br><span class="line"><span class="comment"> * */</span> </span><br><span class="line">export const MOCKHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 是否mock</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ISMOCK = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 这是一个全局的分享信息 不用每一个都去写</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> SHAREINFO = &#123;</span><br><span class="line">    'title': '分享标题',</span><br><span class="line">    'path': '路径',</span><br><span class="line">    'imageUrl': '图片'</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h3 id="2、在-src-utils下创建dva-ts，配置dva"><a href="#2、在-src-utils下创建dva-ts，配置dva" class="headerlink" title="2、在./src/utils下创建dva.ts，配置dva"></a>2、在<code>./src/utils</code>下创建dva.ts，配置dva</h3><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; create &#125; from <span class="string">"dva-core"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createLogger &#125; from <span class="string">"redux-logger"</span>;</span><br><span class="line"><span class="keyword">import</span>  createLoading  from <span class="string">"dva-loading"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let app</span><br><span class="line">let store</span><br><span class="line">let dispatch</span><br><span class="line">let registered</span><br><span class="line"></span><br><span class="line"><span class="function">function <span class="title">createApp</span><span class="params">(opt)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// redux 的日志</span></span><br><span class="line">    opt.onAction = [createLogger()]</span><br><span class="line">    app = create(opt)</span><br><span class="line">    app.use(createLoading(&#123;&#125;))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!registered) &#123;</span><br><span class="line">        opt.models.forEach(model =&gt; app.model(model));</span><br><span class="line">    &#125;</span><br><span class="line">    registered = <span class="literal">true</span>;</span><br><span class="line">    app.start()</span><br><span class="line"></span><br><span class="line">    store = app._store;</span><br><span class="line">    app.getStore = () =&gt; store;</span><br><span class="line">    app.use(&#123;</span><br><span class="line">        onError(err)&#123;</span><br><span class="line">            console.<span class="built_in">log</span>(err);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    dispatch = store.dispatch;</span><br><span class="line">    app.dispatch = dispatch;</span><br><span class="line">    <span class="keyword">return</span> app;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    createApp,</span><br><span class="line">    getDispatch()&#123;</span><br><span class="line">        <span class="keyword">return</span> app.dispatch</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -121,9 +121,9 @@
       <category term="Ant Design" scheme="https://duanruilong.github.io/categories/Ant-Design/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
       <category term="Ant Design" scheme="https://duanruilong.github.io/tags/Ant-Design/"/>
     
@@ -148,11 +148,11 @@
       <category term="dva" scheme="https://duanruilong.github.io/categories/dva/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
     
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
       <category term="ES6" scheme="https://duanruilong.github.io/tags/ES6/"/>
     
@@ -278,11 +278,11 @@
       <category term="编程" scheme="https://duanruilong.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
     
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
       <category term="CSS" scheme="https://duanruilong.github.io/tags/CSS/"/>
     
@@ -386,11 +386,11 @@
       <category term="编程" scheme="https://duanruilong.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
     
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
   </entry>
   
@@ -474,9 +474,9 @@
       <category term="React" scheme="https://duanruilong.github.io/categories/React/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
   </entry>
   
@@ -605,11 +605,11 @@
       <category term="编程" scheme="https://duanruilong.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
     
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
       <category term="小程序" scheme="https://duanruilong.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
@@ -660,11 +660,11 @@
       <category term="编程" scheme="https://duanruilong.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
-    
       <category term="Javascript" scheme="https://duanruilong.github.io/tags/Javascript/"/>
     
       <category term="编程" scheme="https://duanruilong.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="React" scheme="https://duanruilong.github.io/tags/React/"/>
     
       <category term="小程序" scheme="https://duanruilong.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     

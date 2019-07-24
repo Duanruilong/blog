@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Taro+dva+Typescript 搭建微信小程序架构]]></title>
     <url>%2Fblog%2F2019%2F07%2F24%2FTaro-dva-Typescript%E6%90%AD%E5%BB%BA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84%2F</url>
-    <content type="text"><![CDATA[微信小程序的开发目前是很热的一个领域，有很多的开发模式，找到一种属于自己的方法才会使得开发顺心顺利。此架构是使用 Taro + dva + typescript 构建前端开发，京东凹凸实验室的React框架Taro很成熟，又是大厂在维护更新迭代，不用担心没人维护的问题，他有自己的UI还有物料社区，比起原生小程序方便很多，支持多端，一处代码，多处运行，微信小程序、H5、百度小程序、支付宝小程序、字节跳动小程序、QQ轻应用、快应用、ReactNative；数据管理是Redux集成的dva框架，是一个基于 redux 和 redux-saga 的数据流方案，然后为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以也可以理解为一个轻量级的应用框架；TypeScript就是所谓的JavaScript超集。它不是JavaScript的替代品，也不会为JavaScript代码添加任何新功能。相反，TypeScript允许程序员在其代码中使用面向对象的构造，然后将其转换为JavaScript。它还包括类型安全和编译时类型检查等便利功能。 资料 Taro官网地址：dva官网地址： 开始前期工作准备： cli 工具安装: 12345678# 使用 npm 安装 CLI$ npm install -g @tarojs/cli# OR 使用 yarn 安装 CLI$ yarn global add @tarojs/cli# OR 安装了 cnpm，使用 cnpm 安装 CLI$ cnpm install -g @tarojs/cli 使用命令创建模板项目: 12$ taro init Taro_dva_Typescript]]></content>
+    <content type="text"><![CDATA[微信小程序的开发目前是很热的一个领域，有很多的开发模式，找到一种属于自己的方法才会使得开发顺心顺利。此架构是使用 Taro + dva + typescript 构建前端开发，京东凹凸实验室的React框架Taro很成熟，又是大厂在维护更新迭代，不用担心没人维护的问题，他有自己的UI还有物料社区，比起原生小程序方便很多，支持多端，一处代码，多处运行，微信小程序、H5、百度小程序、支付宝小程序、字节跳动小程序、QQ轻应用、快应用、ReactNative；数据管理是Redux集成的dva框架，是一个基于 redux 和 redux-saga 的数据流方案，然后为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以也可以理解为一个轻量级的应用框架；TypeScript就是所谓的JavaScript超集。它不是JavaScript的替代品，也不会为JavaScript代码添加任何新功能。相反，TypeScript允许程序员在其代码中使用面向对象的构造，然后将其转换为JavaScript。它还包括类型安全和编译时类型检查等便利功能。 资料 Taro官网地址：dva官网地址： 开始前期工作准备cli 工具安装: 12345678# 使用 npm 安装 CLI$ npm install -g @tarojs/cli# OR 使用 yarn 安装 CLI$ yarn global add @tarojs/cli# OR 安装了 cnpm，使用 cnpm 安装 CLI$ cnpm install -g @tarojs/cli 使用命令创建模板项目: 12$ taro init Taro_dva_Typescript 安装配置文件安装dva cnpm install --save dva-core dva-loading dva-core：封装了 redux 和 redux-saga的一个插件 dva-loading：管理页面的loading状态 安装@tarojs/redux cnpm install --save redux @tarojs/redux @tarojs/redux-h5 redux-thunk redux-logger 配置项目文件去除不需要的文件，添加实际需要的一些文件，先删除./ssrc/page下的index文件夹，后期使用命令行生成完整结构的文件夹。 在/src`目录下根据自己的实际需求进行一下配置： assets: 一些静态资源，比如：image、iconfont config: 项目配置文件 components: 项目编写的一些共用组件 types: 项目公共的Typescript类型声明 models: 项目dva插件model函数的引用或者是一些共用的js文件 utils: 项目里封装的一些插件 项目一些具体配置操作1、在./src/config下创建index.ts，添加项目配置信息12345678910111213141516171819202122232425262728/** * 这里为了方便测试使用 Easy Mock 模拟接口数据 * * https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist*/export const ONLINEHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';/** * mock 接口 * */ export const MOCKHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';/** * 是否mock*/export const ISMOCK = true;/** * 这是一个全局的分享信息 不用每一个都去写 */export const SHAREINFO = &#123; 'title': '分享标题', 'path': '路径', 'imageUrl': '图片' &#125; 2、在./src/utils下创建dva.ts，配置dva12345678910111213141516171819202122232425262728293031323334353637383940414243import &#123; create &#125; from "dva-core";import &#123; createLogger &#125; from "redux-logger";import createLoading from "dva-loading";let applet storelet dispatchlet registeredfunction createApp(opt) &#123; // redux 的日志 opt.onAction = [createLogger()] app = create(opt) app.use(createLoading(&#123;&#125;)) if (!registered) &#123; opt.models.forEach(model =&gt; app.model(model)); &#125; registered = true; app.start() store = app._store; app.getStore = () =&gt; store; app.use(&#123; onError(err)&#123; console.log(err); &#125; &#125;) dispatch = store.dispatch; app.dispatch = dispatch; return app;&#125;export default&#123; createApp, getDispatch()&#123; return app.dispatch &#125;&#125;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -48,8 +48,8 @@
         <category>Ant Design</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
         <tag>Ant Design</tag>
       </tags>
   </entry>
@@ -61,9 +61,9 @@
         <category>dva</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
         <tag>编程</tag>
+        <tag>React</tag>
         <tag>ES6</tag>
         <tag>dva</tag>
       </tags>
@@ -117,9 +117,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
         <tag>编程</tag>
+        <tag>React</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
@@ -169,9 +169,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
         <tag>编程</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -206,8 +206,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>编程</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -269,9 +269,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
         <tag>编程</tag>
+        <tag>React</tag>
         <tag>小程序</tag>
       </tags>
   </entry>
@@ -296,9 +296,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
         <tag>编程</tag>
+        <tag>React</tag>
         <tag>小程序</tag>
       </tags>
   </entry>
@@ -411,8 +411,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -423,8 +423,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -435,8 +435,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -447,8 +447,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -577,8 +577,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -589,8 +589,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -601,8 +601,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -626,8 +626,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -638,8 +638,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -650,8 +650,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -662,8 +662,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -674,8 +674,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>Javascript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -698,8 +698,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>编程</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -710,8 +710,8 @@
         <category>React</category>
       </categories>
       <tags>
-        <tag>React</tag>
         <tag>编程</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
