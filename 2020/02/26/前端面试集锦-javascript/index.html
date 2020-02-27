@@ -116,7 +116,7 @@
 <meta property="og:description" content="这是一份关于面试的集锦，会收集广泛的面试点或者热点资讯，及时掌握前端的动态和储备自己的面试库，才可以在面试过程里游刃有余，持续积累。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Duanruilong/phone_drl/master/image/blog/javascript.jpg">
-<meta property="og:updated_time" content="2020-02-27T03:14:59.165Z">
+<meta property="og:updated_time" content="2020-02-27T03:24:34.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试集锦-javascript">
 <meta name="twitter:description" content="这是一份关于面试的集锦，会收集广泛的面试点或者热点资讯，及时掌握前端的动态和储备自己的面试库，才可以在面试过程里游刃有余，持续积累。">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  10,348
+                  10,416
                 </span>
               
 
@@ -478,6 +478,7 @@
 <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>JavaScript中的对象都有一个特殊的 prototype 内置属性，其实就是对其他对象的引用<br>几乎所有的对象在创建时 prototype 属性都会被赋予一个非空的值，我们可以把这个属性当作一个备用的仓库<br>当试图引用对象的属性时会出发get操作，第一步时检查对象本身是否有这个属性，如果有就使用它，没有就去原型中查找。一层层向上直到Object.prototype顶层</p>
 <p>基于原型扩展描述一下原型链，什么是原型链，原型的继承，ES5和ES6继承与不同点。</p>
 <p><strong>每一个实例对象都有一个私有属性<code>__proto__</code>,指向它的构造函数的原型对象<code>(prototype)</code></strong></p>
+<p><strong>每一个实例对象都有一个私有属性<code>__proto__</code>,指向它的构造函数的原型对象<code>(prototype)</code>。原型对象也有自己的<code>__proto__</code>，层层向上直到一个对象的原型对象为null。这一层层原型就是<code>原型链</code>。</strong></p>
 <p>构造函数是一种特殊的方法，主要用来在创建对象时初始化对象。每个构造函数都有prototype(原型)(箭头函数以及Function.prototype.bind()没有)属性，<br>这个prototype(原型)属性是一个指针，指向一个对象，这个对象的用途是包含特定类型的所有实例共享的<br>属性和方法，即这个原型对象是用来给实例对象共享属性和方法的。每个实例对象的<strong>proto</strong>都指向这个<br>构造函数/类的prototype属性。</p>
 <p>面向对象的三大特性：继承/多态/封装</p>
 <p>关于new操作符：</p>
